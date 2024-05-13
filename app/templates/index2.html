@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+
+{% block head  %}
+<title>"Кочевник" туристическая база</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<script src="{{ url_for('static', filename='indexjs.js') }}" defer></script>
+{% endblock %}
+
+{% block content %}
+<p class="tegintop"><ins>Главная страница</ins></p>
+<p class="maintext">Кафе "Кочевник" - непревзойденное обещание максимального <br> качества по привлекательным ценам</p>
+<div class="main">
+
+
+<div class="food">
+    <div class="slide">
+            <div class="item" style="background-image: url(https://food.pibig.info/uploads/posts/2023-08/1693328889_food-pibig-info-p-navaristii-sup-iz-baranini-vkontakte-14.jpg);">
+                <div class="contents">
+                    <div class="name">Шурпа</div>
+                    <div class="des">Суп из баранины с овощами.</div>
+                    <button>Перейти в меню</button>
+                </div>
+            </div>
+            <div class="item" style="background-image: url(https://arigus.tv/upload/iblock/f62/b3j8f06clqi2z4z97jhsylw8a5vmsijq.jpg);">
+                <div class="contents">
+                    <div class="name">Буузы</div>
+                    <div class="des">Фарш из говядины, свинины завернутый в тесто, сваренный на пару.</div>
+                    <button>Перейти в меню</button>
+                </div>
+            </div>
+            <div class="item" style="background-image: url(https://food.pibig.info/uploads/posts/2023-08/1693388569_food-pibig-info-p-tsuivan-mongolskoe-blyudo-krasivo-4.jpg);">
+                <div class="contents">
+                    <div class="name">Цуйван</div>
+                    <div class="des">Тушенная говядина с лапшой и овощами.</div>
+                    <button>Перейти в меню</button>
+                </div>
+            </div>
+            <div class="item" style="background-image: url(https://здоровое-питание.рф/upload/iblock/f23/bs30bf0c3o10fp5ovtru6vr1ae3n3kmv/barley_soup_with_carrots_tomato_celery_and_meat_on_a_dark_surface_2829_5607.jpg);">
+                <div class="contents">
+                    <div class="name">Арьяшки</div>
+                    <div class="des">Фарш из говядины, свинины, капусты, моркови завернутый в тесто, сваренный на пару.</div>
+                    <button>Перейти в меню</button>
+                </div>
+            </div>
+            <div class="item" style="background-image: url(https://svoefermerstvo.ru/api/ext/file-data/get-file/wysiwyg/photo_mari_rshb/photo_2023-07-11_11-50-50.jpg);">
+                <div class="contents">
+                    <div class="name">Кумыс</div>
+                    <div class="des">Кисломолочный напиток из кобыльего молока.</div>
+                    <button>Перейти в меню</button>
+                </div>
+            </div>
+            </div>
+            <div class="item" style="background-image: url(https://здоровое-питание.рф/upload/iblock/f23/bs30bf0c3o10fp5ovtru6vr1ae3n3kmv/barley_soup_with_carrots_tomato_celery_and_meat_on_a_dark_surface_2829_5607.jpg);">
+                <div class="contents">
+                    <div class="name">Курут</div>
+                    <div class="des">Национальный твёрдый сыр.</div>
+                    <button>Перейти в меню</button>
+                </div>
+            </div>
+    <div class="button">
+        <button class="prev">&#8592;<i class="fa-solid fa-arrow-left"></i></button>
+        <button class="next">&#8594;<i class="fa-solid fa-arrow-right"></i></button>
+    </div>
+
+    </div>
+</div>
+
+
+
+
+
+<p class="hoteltext">Мы позаботились о вашем отдыхе и подготовили чистые, уютные номера</p>
+<div class="hotel">
+    <div class="slide-hotel">
+        <div class="item-hotel" style="background-image: url(https://static.sutochno.ru/doc/files/hotels/0/38/801/big/60a0d76a1bf92.jpg);">
+            <div class="contents-hotel">
+                <div class="name-hotel">Номер 1</div>
+                <div class="des-hotel">Уютный номер на первом этаже.</div>
+                <button>Увидеть больше</button>
+            </div>
+        </div>
+        <div class="item-hotel" style="background-image: url(https://s0.rbk.ru/v6_top_pics/media/img/2/00/756578923068002.jpg);">
+            <div class="contents-hotel">
+                <div class="name-hotel">Номер 2</div>
+                <div class="des-hotel">Уютный номер на первом этаже.</div>
+                <button>Увидеть больше</button>
+            </div>
+        </div>
+        <div class="item-hotel" style="background-image: url(https://welcome.mosreg.ru/cache/thumbs/thumb_1920__1921112917.jpg);">
+            <div class="contents-hotel">
+                <div class="name-hotel">Номер 3</div>
+                <div class="des-hotel">Большой номер на втором этаже.</div>
+                <button>Увидеть больше</button>
+            </div>
+        </div>
+<div class="button-hotel">
+    <button class="prev-hotel">&#8592;<i class="fa-solid-hotel fa-arrow-left-hotel"></i></button>
+    <button class="next-hotel">&#8594;<i class="fa-solid-hotel fa-arrow-right-hotel"></i></button>
+</div>
+
+</div>
+</div>
+{% endblock %}

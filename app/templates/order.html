@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block head  %}
+<title>Оформление заказа</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='order.css') }}">
+<script src="{{ url_for('static', filename='order.js') }}" defer></script>
+{% endblock %}
+
+{% block content %}
+<h2>Оформление заказа</h2>
+<div class="order">
+    <div class="orders">
+        <p>Доставка</p> <p>Самовывоз</p>
+        <div class="adres">
+            <p>с. Усть-Муны, Майминский район, Республика Алтай</p> </div>
+            <div class="order__summary">
+                <p class="order__summary-text">Итого:</p>
+                <p class="order__summary-price">0 ₽</p>
+              </div>
+              <button type="submit" class="order__button">Заказать</button>
+       
+
+    </div>
+
+</div>
+
+{% endblock %}

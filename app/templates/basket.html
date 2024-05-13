@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block head  %}
+<title>Корзина</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='basket.css') }}">
+<script src="{{ url_for('static', filename='bascket.js') }}" defer></script>
+{% endblock %}
+
+{% block content %}
+<main>
+    <h2>Корзина</h2>
+    <div class="cart">
+        <div class="cart__items">
+          <div class="cart__item">
+            <img class="cart__item-image" src="{{ url_for('static', filename='/images/Rectangle 6.jpg') }}" alt="Товар">
+            <div class="cart__item-info">
+              <h3 class="cart__item-name">Буузы</h3>
+              <p class="cart__item-price">75 ₽</p>
+              <div class="kolich">
+                <div class="Rectangleleft">
+                    <p class="minus">-</p>
+                </div>
+                <div class="kols"><p>0</p></div>
+                <div class="plus"><p>+</p></div>
+                </div>
+              </div>
+            <button class="cart__item-remove"><img src="{{ url_for('static', filename='/images/image 5.svg') }}"></button>
+          </div>
+          <!-- Другие товары в корзине -->
+        </div>
+        <div class="cart__summary">
+          <p class="cart__summary-text">Итого:</p>
+          <p class="cart__summary-price">0 ₽</p>
+        </div>
+        <a href="/order"><button class="cart__button">Оформить заказ</button></a>
+      </div>
+
+
+    
+</main>
+
+
+{% endblock %}

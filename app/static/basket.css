@@ -1,0 +1,194 @@
+@font-face {
+    font-family: "Montserrat";
+    src: url(fonts/Montserrat-Medium.ttf);
+    
+}
+
+@font-face {
+    font-family: "MontserratLight" ;
+    src: url(fonts/Montserrat-Light.ttf);
+}
+
+
+h2{
+    font-family: Montserrat;
+position: relative;
+left: 145px;
+}
+
+.cart {
+  width: 100%;
+  max-width: 1519px;
+  background-color: #D9D9D9;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin: 0 auto;
+  border-radius: 5px;
+}
+
+
+
+.cart__items {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background-color: #fff;
+  border-radius: 10px;
+}
+
+.cart__item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+.cart__item-image {
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+  position: relative;
+  border-radius: 5px;
+  left: 37px;
+}
+
+.cart__item-info {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  flex-grow: 1;
+}
+
+.cart__item-name {
+  font-size: 20px;
+  font-family: Montserrat;
+  font-weight: bold;
+  position: relative;
+  left: 120px;
+  top: 54px;
+}
+
+.cart__item-price {
+  font-size: 20px;
+  font-family: Montserrat;
+  position: relative;
+  left: 1200px;
+  bottom: 15px;
+  
+}
+
+.cart__item-remove {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  right: 10px;
+  bottom: 5px;
+}
+
+.cart__summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.cart__summary-text {
+  font-size: 16px;
+  font-weight: bold;
+  font-family: Montserrat;
+}
+
+.cart__summary-price {
+  font-size: 16px;
+  font-weight: bold;
+  font-family: Montserrat;
+}
+
+.cart__button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #2B2929;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: Montserrat;
+}
+
+.Rectangleleft{
+  position: relative;
+ background-color: rgba(217, 217, 217, 1);
+  height: 35px;
+  width: 25px;
+  border-radius: 7px 0px 0px 7px;
+bottom: 10px;
+  cursor: pointer;
+}
+
+.minus{
+  text-align: center;
+  font-family: Montserrat;
+  font-size: 30px;
+  position: relative;
+  top: 0.1px;
+}
+
+.kols{
+  position: relative;
+  font-family: serif;
+  font-size: 30px;
+ top: -45px;
+  left: 85px;
+  height: 33px;
+  text-align: center;
+  width: 30px;
+  border: 1px solid;
+  border-color: rgba(217, 217, 217, 1);
+}
+
+.kols p{
+  position: relative;
+  top: -30px;
+}
+
+.plus{
+  position: relative;
+  background-color: rgba(217, 217, 217, 1);
+  height: 35px;
+  width: 25px;
+  border-radius: 0px 7px 7px 0px;
+  top: -110px;
+  left: 115px;
+  cursor: pointer;
+}
+
+.plus p{
+  position: relative;
+  text-align: center;
+  font-family: Montserrat;
+  font-size: 30px;
+  top: 0.1vh;
+}
+
+.plus p::selection {
+ background: transparent;
+}
+.minus::selection {
+  background: transparent;
+}
+  
+.kolich{
+  position: relative;
+  width: 100px;
+  height: 50px;
+  left: 780px;
+  bottom: 90px;
+}

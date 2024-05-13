@@ -1,0 +1,54 @@
+.order {
+    width: 100%;
+    max-width: 1519px;
+    background-color: #D9D9D9;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 0 auto;
+    border-radius: 5px;
+  }
+
+  h2{
+    font-family: Montserrat;
+  }
+
+  p{
+    font-family: Montserrat;
+  }
+
+  .order__button{
+
+    display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #2B2929;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: Montserrat;
+
+  }
+
+  .order__summary-price{
+
+  }
+
+  .order__summary-text{
+
+  }
+
+  .order__summary{
+
+  }
+
+  .adres{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: #fff;
+    border-radius: 10px;
+  }

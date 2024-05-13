@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block head  %}
+<title>Номера</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='hotels.css') }}">
+<script src="{{ url_for('static', filename='hotels.js') }}" defer></script>
+{% endblock %}
+
+{% block content %}
+<main>
+<p class="tegintop"><ins>Номера</ins></p>
+<section class="section1">
+    <p style="font-size: 20px;">Коттедж "А"</p>
+    <p>Название номера</p>
+    <p>Название номера</p>
+</section>
+<section class="section2">
+    <p style="font-size: 20px;">Коттедж "Б"</p>
+    <p>Название номера</p>
+    <p>Название номера</p>
+</section>
+<p class="maintext">Добро пожаловать в наши уютные номера! <br>
+Отдыхайте в комфорте среди захватывающей красоты Алтая! <br>
+Гостям предлагается выбрать один из двух коттеджей с номерами различных категорий. Мы гарантируем, 
+что вне <br> зависимости от выбранного номера, вас ожидает все необходимое для комфортного проживания и наслаждения <br> неповторимыми видами Алтайской природы. <br> 
+На территории турбазы есть баня и мангальная зона, где вы сможете насладиться парными процедурами в и провести <br> время на свежем воздухе, готовя шашлык.
+</p>
+<div class="hotel">
+    <div class="hotelkartochka1">
+        <img src="{{ url_for('static', filename='/images/image 4.jpg') }}">
+        <div class="namehotel"><p class="namehoteltext">Название номера</p></div>
+
+    </div>
+    <div class="hotelkartochka2">
+        <img src="{{ url_for('static', filename='/images/image 4.jpg') }}">
+        <div class="namehotel"><p class="namehoteltext">Название номера</p></div>
+    </div>
+    <div class="hotelkartochka3">
+        <img src="{{ url_for('static', filename='/images/image 4.jpg') }}">
+        <div class="namehotel"><p class="namehoteltext">Название номера</p></div>
+    </div>
+    <div class="hotelkartochka4">
+        <img src="{{ url_for('static', filename='/images/image 4.jpg') }}">
+        <div class="namehotel"><p class="namehoteltext">Название номера</p></div>
+    </div>
+</div>
+</main>
+{% endblock %}

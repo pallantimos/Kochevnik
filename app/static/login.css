@@ -1,0 +1,66 @@
+@font-face {
+    font-family: "Montserrat";
+    src: url(fonts/Montserrat-Medium.ttf);
+    
+}
+
+@font-face {
+    font-family: "MontserratLight" ;
+    src: url(fonts/Montserrat-Light.ttf);
+}
+
+p{
+    font-family: "Montserrat";
+    text-align: center;
+    font-size: 28px;
+}
+
+form p{
+    font-family: "Montserrat";
+    font-size: 20px;
+
+}
+
+form{
+    position: relative;
+    text-align: center;
+}
+
+.vvod {
+    font-family: "Montserrat";
+    border: 1px solid;
+    border-color: black;
+    height: 50px;
+    width: 451px;
+    border-radius: 10px 10px 10px 10px;
+    font-size: 16px;
+    padding-left: 20px;
+}
+
+.flash{
+    position: relative;
+    text-align: center;
+}
+
+form li{
+    list-style-type: none;
+    list-style: none;
+    margin-bottom: 45px;
+}
+
+button{
+    background-color:rgba(43, 41, 41, 1);
+    border-radius: 10px 10px 10px 10px;
+    height: 50px;
+    width: 480px;
+    font-family: "MontserratLight";
+    font-size: 16px;
+    color: rgba(255, 255, 255, 1);
+    border: 1px solid;
+    cursor: pointer;
+}
+
+form a{
+    text-decoration: none;
+    color: rgba(255, 255, 255, 1);
+}

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='registr.css') }}">
+    <script src="{{ url_for('static', filename='registr.js') }}" defer></script>
+</head>
+<body>
+    <p>Регистрация</p>
+    {% if error %}
+    <p class="error"><strong>Error:</strong> {{ error }}</p>
+    {% endif %}
+    <form action="/registratesubmit" method="post">
+        <ul>
+            <li>
+                <input class="vvod surname" type="text" name="surname" placeholder="Фамилия">
+            </li>
+            <li>
+                <input class="vvod name" type="text" name="name" placeholder="Имя">
+            </li>
+            <li>
+                <input class="vvod email" type="email" name="email" placeholder="Email">
+            </li>
+            <li>
+                <input class="vvod date" type="date" name="date" placeholder="Дата_рождения">
+            </li>
+            <li>
+                <input class="vvod phone" type="tel" name="phone" placeholder="Телефон">
+            </li>
+            <li>
+                <input id="password" class="vvod password" type="password" name="password" placeholder="Пароль">
+                <div id="password-error" class="error-message" style="display: none; font-family: Montserrat;">Пароль должен содержать минимум 6 символов, включая цифры и буквы</div>
+            </li>
+            <li>
+                <input id="password1" class="vvod password1" type="password" name="confirmPassword" placeholder="Подтверждение пароля">
+            </li>
+            <li>
+                <button type="submit">Зарегистрироваться</button>
+            </li>
+        </ul>
+    </form>
+    <div id="error-msg" class="error-message" style="display: none; font-family: Montserrat; color: red;">Ошибка при отправке данных на сервер</div>
+</body>
+</html>

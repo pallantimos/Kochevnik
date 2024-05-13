@@ -1,0 +1,83 @@
+@font-face {
+    font-family: "Montserrat";
+    src: url(fonts/Montserrat-Medium.ttf);
+    
+}
+
+@font-face {
+    font-family: "MontserratLight" ;
+    src: url(fonts/Montserrat-Light.ttf);
+}
+
+
+.tegintop{
+    position: relative;
+    left: 145px;
+    font-family: Montserrat;
+    font-size: 9px;
+}
+
+section p{
+    font-family: Montserrat;
+    
+}
+
+.section1{
+    position: relative;
+    left: 145px;
+}
+
+.section2{
+    position: relative;
+    left: 320px;
+    top: -118px;
+}
+
+.maintext{
+    position: relative;
+    top: -70px;
+}
+
+.hotelkartochka1{
+    position: relative;
+    left: 110px;
+    top: 0px;
+}
+
+.hotelkartochka2{
+    position: relative;
+    left: 1050px;
+    top: -1000px;
+}
+
+.hotelkartochka3{
+    position: relative;
+    left: 1050px;
+    top: -1500px;
+}
+
+.hotelkartochka3 img{
+    position: relative;
+    height: 40vh;
+    width: 60vh;
+    top: 5vh;
+    left: 5vh;
+}
+
+.hotelkartochka4 img{
+    position: relative;
+    height: 40vh;
+    width: 60vh;
+    top: 5vh;
+    left: 5vh;
+}
+
+.hotelkartochka4{
+    position: relative;
+    top: -1910px;
+    left: 110px;
+}
+
+body{
+    height: 500px;
+}

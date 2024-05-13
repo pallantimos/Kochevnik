@@ -1,0 +1,219 @@
+{% extends "base.html" %}
+
+{% block head  %}
+<title>Меню кафе</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='menu.css') }}">
+<script src="{{ url_for('static', filename='menu.js') }}" defer></script>
+{% endblock %}
+{% block content %}
+<p class="tegintop"><ins>Меню</ins></p>
+<p class="maintext">Наше кафе предлагает насладиться национальными блюдами от <br> коренных жителей Алтая</p>
+<div class="main">
+    <div class="food">
+        <div class="foodsrtoka" style="height: 500px;">
+            
+            <div class="foodkartochka">
+                    <img src="{{ url_for('static', filename='/images/buuz.jpg') }}" class="foodimg">
+                    <p class="namefood">Буузы</p>
+                    <hr class=" foodhr">
+                         <ul class="ulfood">
+                            <li><div class="price"><p class="pricetext">75р</p><p class="gramm">1шт/75г</p></div></li>
+                            <li><div class="sum">
+                                <div class="Rectangleleft">
+                                    <p class="minus">-</p>
+                                </div>
+                                <div class="kols"><p>0</p></div>
+                                <div class="plus"><p>+</p></div>
+                                <button class="buttonbasket"data-image="{{ url_for('static', filename='/images/buuz.jpg') }}" data-name="Буузы" data-price="75">В корзину</button>
+                            </div></li>
+                            
+                         </ul>
+            </div>
+    
+            <div class="foodkartochka">
+    
+                <img src="{{ url_for('static', filename='/images/шурпа.jpg') }}" class="foodimg">
+                    <p class="namefood">Шурпа</p>
+                    <hr class=" foodhr">
+                         <ul class="ulfood">
+                            <li><div class="price"><p class="pricetext">300р</p><p class="gramm">1шт/350г</p></div></li>
+                            <li><div class="sum">
+                                <div class="Rectangleleft">
+                                    <p class="minus">-</p>
+                                </div>
+                                <div class="kols"><p>0</p></div>
+                                <div class="plus"><p>+</p></div>
+                                <button class="buttonbasket"data-image="{{ url_for('static', filename='/images/шурпа.jpg') }}" data-name="Шурпа" data-price="300">В корзину</button>
+                            </div></li>
+                            
+                         </ul>
+    
+            </div>
+    
+    
+            <div class="foodkartochka1">
+    
+                <img src="{{ url_for('static', filename='/images/цуйван.jpg') }}" class="foodimg">
+                    <p class="namefood">Цуйван</p>
+                    <hr class=" foodhr">
+                         <ul class="ulfood">
+                            <li><div class="price"><p class="pricetext">250р</p><p class="gramm">1шт/220г</p></div></li>
+                            <li><div class="sum">
+                                <div class="Rectangleleft">
+                                    <p class="minus">-</p>
+                                </div>
+                                <div class="kols"><p>0</p></div>
+                                <div class="plus"><p>+</p></div>
+                                <button class="buttonbasket"data-image="{{ url_for('static', filename='/images/цуйван.jpg') }}" data-name="Цуйван" data-price="250">В корзину</button>
+                            </div></li>
+                            
+                         </ul>
+    
+            </div>
+    
+            <div class="foodkartochka2">
+    
+                <img src="{{ url_for('static', filename='/images/чай черный.jpg') }}" class="foodimg">
+                    <p class="namefood">Чай чёрный</p>
+                    <hr class=" foodhr">
+                         <ul class="ulfood">
+                            <li><div class="price"><p class="pricetext">35р</p><p class="gramm">1шт/200мл</p></div></li>
+                            <li><div class="sum">
+                                <div class="Rectangleleft">
+                                    <p class="minus">-</p>
+                                </div>
+                                <div class="kols"><p>0</p></div>
+                                <div class="plus"><p>+</p></div>
+                                <button class="buttonbasket"data-image="{{ url_for('static', filename='/images/чай черный.jpg') }}" data-name="Чай чёрный" data-price="75">В корзину</button>
+                            </div></li>
+                            
+                         </ul>
+    
+            </div>
+    
+            <div class="foodkartochka3">
+    
+                <img src="{{ url_for('static', filename='/images/пельмени.jpg') }}" class="foodimg">
+                    <p class="namefood">Пельмени</p>
+                    <hr class=" foodhr">
+                         <ul class="ulfood">
+                            <li><div class="price"><p class="pricetext">250р</p><p class="gramm">1шт/220г</p></div></li>
+                            <li><div class="sum">
+                                <div class="Rectangleleft">
+                                    <p class="minus">-</p>
+                                </div>
+                                <div class="kols"><p>0</p></div>
+                                <div class="plus"><p>+</p></div>
+                                <button class="buttonbasket"data-image="{{ url_for('static', filename='/images/пельмени.jpg') }}" data-name="Пельмени" data-price="250">В корзину</button>
+                            </div></li>
+                            
+                         </ul>
+    
+            </div>
+    
+            <div class="foodkartochka4">
+    
+                <img src="{{ url_for('static', filename='/images/летний.jpg') }}" class="foodimg">
+                    <p class="namefood">Салат "Летний"</p>
+                    <hr class=" foodhr">
+                         <ul class="ulfood">
+                            <li><div class="price"><p class="pricetext">90р</p><p class="gramm">1шт/100г</p></div></li>
+                            <li><div class="sum">
+                                <div class="Rectangleleft">
+                                    <p class="minus">-</p>
+                                </div>
+                                <div class="kols"><p>0</p></div>
+                                <div class="plus"><p>+</p></div>
+                                <button class="buttonbasket"data-image="{{ url_for('static', filename='/images/летний.jpg') }}" data-name="Салат Летний" data-price="90">В корзину</button>
+                            </div></li>
+                            
+                         </ul>
+    
+            </div>
+    
+            <div class="foodkartochka5">
+    
+                <img src="{{ url_for('static', filename='/images/витаминный.jpg') }}" class="foodimg">
+                    <p class="namefood">Салат "Витаминный"</p>
+                    <hr class=" foodhr">
+                         <ul class="ulfood">
+                            <li><div class="price"><p class="pricetext">100р</p><p class="gramm">1шт/100г</p></div></li>
+                            <li><div class="sum">
+                                <div class="Rectangleleft">
+                                    <p class="minus">-</p>
+                                </div>
+                                <div class="kols"><p>0</p></div>
+                                <div class="plus"><p>+</p></div>
+                                <button class="buttonbasket"data-image="{{ url_for('static', filename='/images/витаминный.jpg') }}" data-name="Салат Витаминный" data-price="100">В корзину</button>
+                            </div></li>
+                            
+                         </ul>
+    
+            </div>
+    
+    
+            <div class="foodkartochka6">
+    
+                <img src="{{ url_for('static', filename='/images/боорсок.jpg') }}" class="foodimg">
+                    <p class="namefood">Боорсоки</p>
+                    <hr class=" foodhr">
+                         <ul class="ulfood">
+                            <li><div class="price"><p class="pricetext">70р</p><p class="gramm">1шт/60г</p></div></li>
+                            <li><div class="sum">
+                                <div class="Rectangleleft">
+                                    <p class="minus">-</p>
+                                </div>
+                                <div class="kols"><p>0</p></div>
+                                <div class="plus"><p>+</p></div>
+                                <button class="buttonbasket"data-image="{{ url_for('static', filename='/images/боорсок.jpg') }}" data-name="Боорсоки" data-price="70">В корзину</button>
+                            </div></li>
+                            
+                         </ul>
+    
+            </div>
+    
+            <div class="foodkartochka7">
+    
+                <img src="{{ url_for('static', filename='/images/блины.jpg') }}" class="foodimg">
+                    <p class="namefood">Блины</p>
+                    <hr class=" foodhr">
+                         <ul class="ulfood">
+                            <li><div class="price"><p class="pricetext">70р</p><p class="gramm">2шт/120г</p></div></li>
+                            <li><div class="sum">
+                                <div class="Rectangleleft">
+                                    <p class="minus">-</p>
+                                </div>
+                                <div class="kols"><p>0</p></div>
+                                <div class="plus"><p>+</p></div>
+                                <button class="buttonbasket"data-image="{{ url_for('static', filename='/images/блины.jpg') }}" data-name="Блины" data-price="70">В корзину</button>
+                            </div></li>
+                            
+                         </ul>
+    
+            </div>
+    
+    
+            <div class="foodkartochka8">
+    
+                <img src="{{ url_for('static', filename='/images/Rectangle 6.jpg') }}" class="foodimg">
+                    <p class="namefood">Буузы</p>
+                    <hr class=" foodhr">
+                         <ul class="ulfood">
+                            <li><div class="price"><p class="pricetext">75р</p><p class="gramm">1шт/75г</p></div></li>
+                            <li><div class="sum">
+                                <div class="Rectangleleft">
+                                    <p class="minus">-</p>
+                                </div>
+                                <div class="kols"><p>0</p></div>
+                                <div class="plus"><p>+</p></div>
+                                <button class="buttonbasket"data-image="{{ url_for('static', filename='/images/Rectangle 6.jpg') }}" data-name="Буузы" data-price="75">В корзину</button>
+                            </div></li>
+                            
+                         </ul>
+    
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
