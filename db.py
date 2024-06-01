@@ -18,6 +18,12 @@ class Base(DeclarativeBase):
     pass
 
 
+class Status(Base):
+    __tablename__ = "Status"
+    id: Mapped[int] = mapped_column(primary_key=True)
+    Name: Mapped[str] = mapped_column(String(255))
+
+
 class Users(Base):
     __tablename__ = "Users"
     id: Mapped[int] = mapped_column(primary_key=True)
@@ -33,21 +39,6 @@ class Users(Base):
         return "<Users {}>".format(self.id)
 
 
-class ShoppingCart(Base):
-    __tablename__ = "ShoppingCart"
-    id: Mapped[int] = mapped_column(primary_key=True)
-    fk_User: Mapped[int] = mapped_column(ForeignKey("Users.id"))
-    Price: Mapped[int] = mapped_column(Integer())
-
-
-class ShoppingCartList(Base):
-    __tablename__ = "ShoppingCartList"
-    id: Mapped[int] = mapped_column(primary_key=True)
-    fk_ShoppingCart: Mapped[int] = mapped_column(ForeignKey("ShoppingCart.id"))
-    fk_Dish: Mapped[int] = mapped_column(ForeignKey("Dish.id"))
-    Amount: Mapped[int] = mapped_column(Integer())
-
-
 class Dish(Base):
     __tablename__ = "Dish"
     id: Mapped[int] = mapped_column(primary_key=True)
@@ -60,37 +51,42 @@ class Dish(Base):
 class Bron(Base):
     __tablename__ = "Bron"
     id: Mapped[int] = mapped_column(primary_key=True)
-    Date: Mapped[str] = mapped_column(String(255))
+    Checkout_date: Mapped[str] = mapped_column(String(255))
+    Checkin_date: Mapped[str] = mapped_column(String(255))
     fk_Room: Mapped[int] = mapped_column(ForeignKey("Rooms.id"))
     fk_User: Mapped[int] = mapped_column(ForeignKey("Users.id"))
-    Amount_day: Mapped[int] = mapped_column(Integer)
-    Time: Mapped[Time] = mapped_column(Time)
     Price: Mapped[int] = mapped_column(Integer)
+    Code: Mapped[str] = mapped_column(String(255))
+
+
+class BlackList(Base):
+    __tablename__ = "Black_List"
+    id: Mapped[int] = mapped_column(primary_key=True)
+    fk_User: Mapped[int] = mapped_column(ForeignKey("Users.id"))
 
 
 class Order(Base):
     __tablename__ = "Order"
     id: Mapped[int] = mapped_column(primary_key=True)
-    Date: Mapped[datetime.date] = mapped_column(Date())
     fk_User: Mapped[str] = mapped_column(ForeignKey("Users.id"))
     Price: Mapped[int] = mapped_column(Integer)
     Code: Mapped[str] = mapped_column(String(255))
 
 
-class ChangesStatusOrder(Base):
-    __tablename__ = "Changes_Status_Order"
+class OrderStatus(Base):
+    __tablename__ = "OrderStatus"
     id: Mapped[int] = mapped_column(primary_key=True)
     fk_Order: Mapped[int] = mapped_column(ForeignKey("Order.id"))
-    fk_Status: Mapped[int] = mapped_column(ForeignKey("Order_Status.id"))
-    Time: Mapped[Time] = mapped_column(Time)
+    fk_Status: Mapped[int] = mapped_column(ForeignKey("Status.id"))
+    Time: Mapped[datetime.time] = mapped_column(Time)
     Date: Mapped[datetime.date] = mapped_column(Date())
 
 
-class ChangesStatusBron(Base):
-    __tablename__ = "Changes_Status_Bron"
+class BronStatus(Base):
+    __tablename__ = "BronStatus"
     id: Mapped[int] = mapped_column(primary_key=True)
-    fk_Order: Mapped[int] = mapped_column(ForeignKey("Bron.id"))
-    fk_Status: Mapped[int] = mapped_column(ForeignKey("Bron_Status.id"))
+    fk_Bron: Mapped[int] = mapped_column(ForeignKey("Bron.id"))
+    fk_Status: Mapped[int] = mapped_column(ForeignKey("Status.id"))
     Time: Mapped[Time] = mapped_column(Time)
     Date: Mapped[datetime.date] = mapped_column(Date())
 
@@ -121,15 +117,3 @@ class OrderList(Base):
     fk_Order: Mapped[int] = mapped_column(ForeignKey("Order.id"))
     fk_Dish: Mapped[int] = mapped_column(ForeignKey("Dish.id"))
     Amount: Mapped[int] = mapped_column(Integer)
-
-
-class BronStatus(Base):
-    __tablename__ = "Bron_Status"
-    id: Mapped[int] = mapped_column(primary_key=True)
-    Name: Mapped[str] = mapped_column(String(255))
-
-
-class OrderStatus(Base):
-    __tablename__ = "Order_Status"
-    id: Mapped[int] = mapped_column(primary_key=True)
-    Name: Mapped[str] = mapped_column(String(255))

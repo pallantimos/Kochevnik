@@ -12,6 +12,8 @@ class Config(object):
 
 
 def random_string():
-    letters = string.ascii_lowercase
-    return ''.join(random.choice(letters) for i in range(10))
+    letters = string.ascii_uppercase
+    digits = string.digits
+    return ''.join(random.choice(letters + digits) for i in range(6))
+
 

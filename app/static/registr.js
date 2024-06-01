@@ -28,7 +28,6 @@ document.addEventListener('DOMContentLoaded', function() {
 document.querySelector('form').addEventListener('submit', function(event) {
     event.preventDefault(); // предотвратить отправку формы
 
-
     let formData = {};
     // собираем значения полей формы и добавляем их в объект formData
     document.querySelectorAll('.vvod').forEach(function(input) {
@@ -43,6 +42,7 @@ document.querySelector('form').addEventListener('submit', function(event) {
     let xhr = new XMLHttpRequest();
     xhr.open('POST', '/registratesubmit', true); // указываем метод POST и адрес сервера
     xhr.setRequestHeader('Content-Type', 'application/json');
+    console.log("123123")
 
     xhr.onload = function() {
         if (xhr.status >= 200 && xhr.status < 300) {
@@ -53,10 +53,8 @@ document.querySelector('form').addEventListener('submit', function(event) {
             const passwordInput = document.getElementById('vvod password');
             const errorMessage = document.getElementById('error-msg')
             let response = JSON.parse(xhr.responseText);
-            console.error(response.error);
             passwordInput.style.borderColor = 'red';
             errorMessage.text = xhr.response.JSON.password;
-            console.error('Произошла ошибка при отправке данных на сервер.');
         }
     };
     xhr.send(jsonData); // отправляем JSON данные на сервер

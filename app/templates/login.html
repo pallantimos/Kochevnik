@@ -9,15 +9,15 @@
     </head>
     <body>
         <p>Добро пожаловать! {{ visits }}</p>
-        {% for msg in get_flashed_messages() %}
-        <div class="flash">{{msg}}</div>
-        {% endfor %}
-        <form action="/loginsubmit" method="post" id="login-form">
+    {% for message in get_flashed_messages() %}
+        <div>{{ message }}</div>
+    {% endfor %}
+        <form action="/login" method="post" id="login-form">
           <ul>
             <li><input class="vvod phone" type="tel" name="tel" id="phone" placeholder="Телефон" >
             </li>
             <li><input class="vvod password" type="password" name="password" id="password" placeholder="Пароль" ></li>
-          <li><button type="submit">Войти</button></li>
+          <p><button type="submit">Войти</button></p>
           <li><button><a href="/registrate">Регистрация</a></button></li>
         </ul>
         </form>

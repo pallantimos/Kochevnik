@@ -26,6 +26,11 @@ form{
     text-align: center;
 }
 
+div{
+    position: relative;
+    text-align: center;
+}
+
 .vvod {
     font-family: "Montserrat";
     border: 1px solid;

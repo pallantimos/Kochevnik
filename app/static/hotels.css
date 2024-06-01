@@ -33,51 +33,59 @@ section p{
     top: -118px;
 }
 
-.maintext{
+.maintextss{
     position: relative;
-    top: -70px;
+    top: 20px;
+    font-family: Montserrat;
+    text-align: center;
 }
 
+
 .hotelkartochka1{
+    left: 200px;
     position: relative;
-    left: 110px;
-    top: 0px;
+    top: 90px;
+    width: 700px;
+    cursor: pointer;
+}
+
+.hotelkartochka1 img{
+    width: 700px;
+    height: 400px;
 }
 
 .hotelkartochka2{
     position: relative;
-    left: 1050px;
-    top: -1000px;
+  left: 1000px;
+  bottom: 355px;
+  cursor: pointer;
+  width: 700px;
 }
 
-.hotelkartochka3{
-    position: relative;
-    left: 1050px;
-    top: -1500px;
-}
-
-.hotelkartochka3 img{
-    position: relative;
-    height: 40vh;
-    width: 60vh;
-    top: 5vh;
-    left: 5vh;
-}
-
-.hotelkartochka4 img{
-    position: relative;
-    height: 40vh;
-    width: 60vh;
-    top: 5vh;
-    left: 5vh;
-}
-
-.hotelkartochka4{
-    position: relative;
-    top: -1910px;
-    left: 110px;
+.hotelkartochka2 img{
+    width: 700px;
+    height: 400px;
 }
 
 body{
     height: 500px;
 }
+
+.namehotel{
+    border: 1px solid #D9D9D9;
+    width: 165px;
+    background-color: #D9D9D9;
+    color: black;
+    border-radius: 10px;
+    height: 40px;
+    font-family: Montserrat;
+    bottom: 46px;
+    position: relative;
+    text-align: center;
+}
+
+.namehoteltext{
+    position: relative;
+    bottom: 4px;
+}
+

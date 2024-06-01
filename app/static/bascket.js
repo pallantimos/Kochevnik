@@ -1,21 +1,16 @@
 let cartItems = [];
 
 function loadCartItems() {
-  const savedCartItems = localStorage.getItem('cartItems');
-  if (savedCartItems) {
-    cartItems = JSON.parse(savedCartItems);
-  }
-  renderCartItems();
+  fetch('/shoppingcart')
+    .then(response => response.json())
+    .then(data => {
+      cartItems = data;
+      renderCartItems();
+    })
+    .catch(error => console.error('Error:', error));
 }
 
 loadCartItems();
-
-function addItemToCart(image, name, price) {
-  const item = { image, name, price, quantity: 1 };
-  cartItems.push(item);
-  saveCartItems();
-  renderCartItems();
-}
 
 function renderCartItems() {
   const cartItemsContainer = document.querySelector('.cart__items');
@@ -28,7 +23,7 @@ function renderCartItems() {
     const image = document.createElement('img');
     image.classList.add('cart__item-image');
     image.src = item.image;
-    image.alt = item.name;
+    image.alt = item.Name;
     cartItem.appendChild(image);
 
     const itemInfo = document.createElement('div');
@@ -36,12 +31,12 @@ function renderCartItems() {
 
     const name = document.createElement('h3');
     name.classList.add('cart__item-name');
-    name.textContent = item.name;
+    name.textContent = item.Name;
     itemInfo.appendChild(name);
 
     const price = document.createElement('p');
     price.classList.add('cart__item-price');
-    price.textContent = `${item.price * item.quantity} ₽`;
+    price.textContent = `${item.Price * item.Amount} ₽`;
     itemInfo.appendChild(price);
 
     const quantity = document.createElement('div');
@@ -57,7 +52,7 @@ function renderCartItems() {
 
     const kols = document.createElement('div');
     kols.classList.add('kols');
-    kols.textContent = item.quantity;
+    kols.textContent = item.Amount;
     quantity.appendChild(kols);
 
     const plusButton = document.createElement('button');
@@ -83,36 +78,51 @@ function renderCartItems() {
   });
 
   const totalPrice = document.querySelector('.cart__summary-price').textContent;
-localStorage.setItem('totalPrice', totalPrice);
 
   updateCartSummary();
 }
 
+// Функция изменения количества элемента корзины
 function changeQuantity(index, delta) {
-  cartItems[index].quantity += delta;
-  if (cartItems[index].quantity <= 0) {
-    removeItemFromCart(index);
+  // Изменение количества элемента корзины на указанное значение
+  cartItems[index].Amount += delta;
+  cartItems[index].delta = delta;
+  let jsonData = JSON.stringify(cartItems[index]);
+  let pmk = new XMLHttpRequest();
+  pmk.open('POST', '/shoppingcart', true); // указываем метод POST и адрес сервера
+  pmk.setRequestHeader('Content-Type', 'application/json');
+
+  // Если количество элемента корзины стало меньше или равно нулю, то удаление элемента корзины
+  if (cartItems[index].Amount <= 0) {
+    cartItems[index].Amount += 1;
   } else {
-    saveCartItems();
+    // Сохранение массива cartItems в локальное хранилище
+    // Вызов функции renderCartItems() для отрисовки элементов корзины на странице
     renderCartItems();
+    pmk.send(jsonData); // отправляем JSN данные на сервOер
   }
 }
 
 function removeItemFromCart(index) {
+  cartItems[index].delete = "true";
+  let jsonData = JSON.stringify(cartItems[index]);
+  let pmk = new XMLHttpRequest();
+  pmk.open('POST', '/shoppingcart', true); // указываем метод POST и адрес сервера
+  pmk.setRequestHeader('Content-Type', 'application/json');
+  pmk.send(jsonData); // отправляем JSN данные на сервOер
+
   cartItems.splice(index, 1);
-  saveCartItems();
   renderCartItems();
 }
 
-function saveCartItems() {
-  localStorage.setItem('cartItems', JSON.stringify(cartItems));
-}
-
 function loadCartItems() {
-  const savedCartItems = localStorage.getItem('cartItems');
-  if (savedCartItems) {
-    cartItems = JSON.parse(savedCartItems);
-  }
+  fetch('/shoppingcart')
+    .then(response => response.json())
+    .then(data => {
+      cartItems = data;
+      renderCartItems();
+    })
+    .catch(error => console.error('Error:', error));
 }
 
 loadCartItems();
@@ -121,7 +131,7 @@ renderCartItems();
 function updateCartSummary() {
   let totalPrice = 0;
   cartItems.forEach(item => {
-    totalPrice += parseInt(item.price) * parseInt(item.quantity);
+    totalPrice += parseInt(item.Price) * parseInt(item.Amount);
   });
   const cartSummary = document.querySelector('.cart__summary-price');
   cartSummary.textContent = totalPrice + ' ₽';

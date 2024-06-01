@@ -1,0 +1,49 @@
+div{
+    font-family: Montserrat;
+    text-align: center;
+}
+
+.conteiner_order{
+    width: 100%;
+    max-width: 1519px;
+    background-color: #D9D9D9;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 0 auto;
+    border-radius: 5px;
+}
+
+.thanks{
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.text{
+    font-size: 23px;
+    font-weight: bold;
+}
+
+.number_order{
+    font-size: 23px;
+    font-weight: bold;
+    color: #187026;
+
+}
+
+.orderq{
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  
+}
+
+.orderq li{
+    list-style-type: none;
+    list-style: none;
+}
+
+.text2{
+    text-align: center;
+    font-size: 20px;
+}

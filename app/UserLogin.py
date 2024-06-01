@@ -5,10 +5,21 @@ from sqlalchemy import select
 
 
 class UserLogin():
+    def get_current_user_info(self):
+        user = {
+            "Name": self.__user.Name,
+            "Email": self.__user.Email,
+            "Password": self.__user.Password,
+            "Surname": self.__user.Surname,
+            "Phone": self.__user.Phone,
+        }
+        return user
+
     def from_DB(self, user_id):
         with Session() as session:
-            statement = select(Users).where(Users.id == str(user_id))
-            return session.execute(statement).fetchone()[0]
+            statement = select(Users).where(Users.id == user_id)
+            self.__user = session.execute(statement).fetchone()[0]
+            return self
 
     def create(self, user):
         self.__user = user

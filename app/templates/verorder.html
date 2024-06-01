@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block head  %}
+<title>Подтверждение заказа</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='verorder.css') }}">
+<script src="{{ url_for('static', filename='verorder.js') }}" defer></script>
+{% endblock %}
+
+{% block content %}
+<div class="conteiner_order">
+    <div class="thanks">Спасибо за заказ!</div>
+    <div class="order1">
+
+            <div class="text">Номер вашего заказа <p class="number_order">#dfg</p></div>
+       
+    </div>
+    <div class="text2">В течение 10 минут с вами свяжется <br> оператор для подтверждения заказа</div>
+</div>
+{% endblock %}

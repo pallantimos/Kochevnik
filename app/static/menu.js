@@ -16,6 +16,17 @@ function addItemToCart(image, name, price, quantity) {
 }
 
 function saveCartItems() {
-  localStorage.setItem('cartItems', JSON.stringify(cartItems));
+  let cartItemsJson = JSON.stringify(cartItems);
+  let xhr = new XMLHttpRequest();
+  xhr.open('POST', '/menu', true);
+  xhr.setRequestHeader('Content-Type', 'application/json');
+  xhr.onload = function() {
+    if (xhr.status === 200) {
+      console.log('Данные отправилисьь');
+    } else {
+      console.log('Че-то не так:', xhr.responseText);
+    }
+  };
+  xhr.send(cartItemsJson);
 }
 

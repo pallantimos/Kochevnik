@@ -11,23 +11,21 @@ document.getElementById('login-form').addEventListener('submit', function(event)
 
   // отправляем данные на сервер с помощью AJAX
   let xhr = new XMLHttpRequest();
-  xhr.open('POST', '/loginsubmit', true); // указываем метод POST и адрес сервера
+  xhr.open('POST', '/login', true); // указываем метод POST и адрес сервера
   xhr.setRequestHeader('Content-Type', 'application/json');
 
   xhr.onload = function() {
     if (xhr.status >= 200 && xhr.status < 300) {
       console.log('Данные успешно отправлены на сервер!');
-    // Parse the response as JSON
+      window.location.href= "/user"
       let response = JSON.parse(xhr.responseText);
       // Check if the response indicates success
       if (response.success) {
       // Redirect the user to the index page
-      window.location.href = "/index";
     }}
     else {
       let response = JSON.parse(xhr.responseText);
       console.error(response.error);
-      window.location.href = "/login";
     }
   };
   xhr.send(jsonData); // отправляем JSON данные на сервер

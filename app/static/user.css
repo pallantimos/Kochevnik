@@ -1,0 +1,153 @@
+
+
+h2{
+    font-family: Montserrat;
+    position: relative;
+    left: 145px;
+}
+
+.button-list {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .libutton button {
+    display: block;
+    width: 100px;
+    padding: 10px;
+    background-color: #2B2929;
+    color: #fff;
+    font-size: 16px;
+    text-align: center;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: Montserrat;
+    margin-right: 10px;
+    margin-left: 140px;
+  }
+
+.li1{
+    position: relative;
+    left: 60px;
+  }
+  
+  .li2{
+    position: relative;
+    left: 300px;
+  }
+  
+  .li3{
+    position: relative;
+    left: 650px;
+  }
+  
+  .li4{
+    position: relative;
+    left: 1000px;
+  }
+
+
+.buttons ul{
+    margin: 0; /* Обнуляем значение отступов */
+    padding: 4px; /* Значение полей */
+    
+}
+
+.buttons li{
+    font-family: Montserrat;
+    font-weight: bold;
+    display: inline; 
+}
+
+div{
+    font-family: Montserrat;
+}
+
+.surname {
+    position: relative;
+    left: 150px;
+    font-size: 19px;
+  }
+  
+  .name {
+    position: relative;
+    left: 150px;
+    font-size: 19px;
+  }
+  
+  .number {
+    position: relative;
+    left: 150px;
+    font-size: 19px;
+    font-weight: bold;
+  }
+  
+  .email {
+    position: relative;
+    left: 150px;
+    font-size: 19px;
+    font-weight: bold;
+  }
+  
+  .history {
+    width: 100%;
+    max-width: 1519px;
+    background-color: #D9D9D9;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 0 auto;
+    border-radius: 5px;
+  }
+  
+  .tablename ul {
+    margin: 0;
+    /* Обнуляем значение отступов */
+    padding: 4px;
+    /* Значение полей */
+  }
+  
+  .tablename li {
+    font-family: Montserrat;
+    font-weight: bold;
+    display: inline;
+  }
+  
+  .carthistory {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: #fff;
+    border-radius: 10px;
+  }
+  
+  .orderinfo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    padding: 5px;
+    font-family: Montserrat;
+  }
+  
+  .o1 {
+    position: relative;
+    left: 60px;
+  }
+  
+  .o2 {
+    position: relative;
+    right: 40px;
+  }
+  
+  .o3 {
+    position: relative;
+    right: 160px;
+  }
+  
+  .o4 {
+    position: relative;
+    right: 240px;
+  }

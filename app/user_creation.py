@@ -16,7 +16,7 @@ class UserCreationSchema(BaseModel):
 
     @field_validator("password")
     @classmethod
-    def password_now(cls, value: str) -> str:
+    def password(cls, value: str) -> str:
         if len(value) < 8:
             raise ValueError("Пароль должен быть длинее 8 символов")
         if not any(c.isupper() for c in value):
@@ -33,7 +33,7 @@ class UserCreationSchema(BaseModel):
 
     @field_validator("date")
     @classmethod
-    def date_now(cls, value: str) -> str:
+    def date(cls, value: str) -> str:
         if int(value[:4]) >= datetime.date.today().year:
             raise ValueError(
                 "Некорректная дата рождения"
@@ -45,7 +45,7 @@ class UserCreationSchema(BaseModel):
         return value
     @field_validator("phone")
     @classmethod
-    def date_now(cls, value: str) -> str:
+    def phone(cls, value: str) -> str:
         with Session() as session:
             statement = select(Users).where(Users.Phone == value)
             result = session.execute(statement).scalar()

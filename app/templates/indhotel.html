@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block head  %}
+<title>Номера</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='indhotel.css') }}">
+<script src="{{ url_for('static', filename='indhotel.js') }}" defer></script>
+{% endblock %}
+
+{% block content %}
+<p class="tegintop"><ins>Номера</ins></p>
+<div class="nomerhotel">  
+    <img class="imghotel" src="{{ url_for('static', filename='/images/image 4.jpg') }}">
+    <div class="texthotel">
+        <p class="headerhotel">СТАНДАРТ с одной широкой кроватью</p>
+        <p class="maintext">Это уютный номер категории "люкс" в гостиничном доме, расположенном 
+            в живописном уголке Алтая. Из окна номера открывается прекрасный вид на горный ландшафт. К услугам гостей бесплатный Wi-Fi, парковка и завтрак в ресторане гостиницы. Это идеальное место для 
+            тех, кто хочет отдохнуть в мире и тишине, окруженный природой Алтая.</p>
+    </div>
+</div>
+
+<div class="datehotel">
+    <div class="date1"><p>Дата заезда</p>
+        <input id="checkin-date" type="date" name="calendar" value="{{ current_date }}" min="{{ current_date }}">
+    </div>
+    <div class="date2">
+        <p>Дата выезда</p>
+        <input id="checkout-date" type="date" name="calendar" value="{{ current_date }}" min="{{ current_date }}">
+    </div>
+    <button id="book-button" class="broni" onclick="bookRoom()">
+        Забронировать
+        </button>
+</div>
+<br>
+
+
+
+{% endblock %}

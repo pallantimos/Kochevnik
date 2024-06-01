@@ -44,7 +44,7 @@ left: 145px;
   padding: 10px;
   border: 1px solid #ddd;
 }
-
+  
 .cart__item-image {
   width: 90px;
   height: 90px;
@@ -131,6 +131,7 @@ left: 145px;
   border-radius: 7px 0px 0px 7px;
 bottom: 10px;
   cursor: pointer;
+  left: 60px;
 }
 
 .minus{
@@ -165,8 +166,8 @@ bottom: 10px;
   height: 35px;
   width: 25px;
   border-radius: 0px 7px 7px 0px;
-  top: -110px;
-  left: 115px;
+  top: -80px;
+  left: 117px;
   cursor: pointer;
 }
 
@@ -191,4 +192,8 @@ bottom: 10px;
   height: 50px;
   left: 780px;
   bottom: 90px;
+}
+
+body{
+  height: 1000px;
 }
