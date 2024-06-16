@@ -1,0 +1,39 @@
+{% extends "baseadmin.html" %}
+
+{% block head  %}
+<title>Заказы</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='adminorder.css') }}">
+<script src="{{ url_for('static', filename='adminorder.js') }}" defer></script>
+<link rel="shortcut icon" href="{{ url_for('static', filename='/images/favicon.ico') }}" />
+{% endblock %}
+
+{% block content %}
+
+<div class="conteineradmin">
+    <div class="panelname">
+        <p class="idorder">ID заказа</p>
+        <p class="statusorder">Статус</p>
+        <p class="userorder">Пользователь</p>
+        <p class="dateorder">Сумма заказа</p>
+        <p class="priceorder">Код</p>
+    </div>
+     {% for el in orders %}
+    <div class="orderlist">
+        <p class="item1">{{ el.id }}</p>
+        <select class="statuslist">
+        {% for status in statuses %}
+            {% if status == selected_status %}
+            <option selected>{{ status.Name }}</option>
+            {% else %}
+            <option >{{ status.Name }}</option>
+            {% endif %}
+        {% endfor %}
+        </select>
+          <p class="item2">{{ el.fk_User }}</p>
+          <p class="item3">{{ el.Price }}</p>
+          <p class="item4">{{ el.Code }}</p>
+    </div>
+     {% endfor %}
+</div>
+
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block head  %}
+<title>Контакты</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='basket.css') }}">
+<script src="{{ url_for('static', filename='bascket.js') }}" defer></script>
+<link rel="shortcut icon" href="{{ url_for('static', filename='/images/favicon.ico') }}" />
+{% endblock %}
+
+{% block content %}
+<div><a class="dg-widget-link" href="http://2gis.ru/gornoaltaysk/firm/70000001024382700/center/85.73101222515108,51.73387586219592/zoom/18?utm_medium=widget-source&utm_campaign=firmsonmap&utm_source=bigMap">Посмотреть на карте Республики Алтай</a>
+<div class="dg-widget-link"><a href="http://2gis.ru/gornoaltaysk/firm/70000001024382700/photos/70000001024382700/center/85.73101222515108,51.73387586219592/zoom/17?utm_medium=widget-source&utm_campaign=firmsonmap&utm_source=photos">Фотографии компании</a></div>
+<div class="dg-widget-link"><a href="http://2gis.ru/gornoaltaysk/center/85.730671,51.733587/zoom/18/routeTab/rsType/bus/to/85.730671,51.733587╎Кочевник, кафе?utm_medium=widget-source&utm_campaign=firmsonmap&utm_source=route">Найти проезд до Кочевник, кафе</a>
+</div>
+</div>
+<script charset="utf-8" src="https://widgets.2gis.com/js/DGWidgetLoader.js"></script>
+<script charset="utf-8">new DGWidgetLoader({"width":1000,"height":600, "borderColor":"#a3a3a3","pos":{"lat":51.73387586219592,"lon":85.73101222515108,"zoom":18},"opt":{"city":"gornoaltaysk"},"org":[{"id":"70000001024382700"}]});</script><noscript style="color:#c00;font-size:16px;font-weight:bold;">Виджет карты использует JavaScript. Включите его в настройках вашего браузера.</noscript>
+{% endblock %}

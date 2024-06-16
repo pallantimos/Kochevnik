@@ -4,6 +4,7 @@
 <title>Оформление заказа</title>
 <link rel="stylesheet" href="{{ url_for('static', filename='order.css') }}">
 <script src="{{ url_for('static', filename='order.js') }}" defer></script>
+<link rel="shortcut icon" href="{{ url_for('static', filename='/images/favicon.ico') }}" />
 {% endblock %}
 
 {% block content %}
@@ -15,7 +16,7 @@
             <p>с. Усть-Муны, Майминский район, Республика Алтай</p> </div>
             <div class="order__summary">
                 <p class="order__summary-text">Итого:</p>
-                <p class="order__summary-price">0 ₽</p>
+                <p class="order__summary-price">{{ total_price }} ₽</p>
               </div>
               <button onclick="submitOrder()" type="submit" class="order__button">Заказать</button>
     </div>

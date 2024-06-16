@@ -3,15 +3,16 @@
 {% block head  %}
 <title>Подтверждение заказа</title>
 <link rel="stylesheet" href="{{ url_for('static', filename='verorder.css') }}">
-<script src="{{ url_for('static', filename='verorder.js') }}" defer></script>
+<script src="{{ url_for('static', filename='verbron.js') }}" defer></script>
+<link rel="shortcut icon" href="{{ url_for('static', filename='/images/favicon.ico') }}" />
 {% endblock %}
 
 {% block content %}
 <div class="conteiner_order">
-    <div class="thanks">Спасибо за заказ!</div>
+    <div class="thanks">Вы успешно забронировали номер!</div>
     <div class="order1">
 
-            <div class="text">Номер вашего заказа <p class="number_order">{{ code.code }}</p></div>
+            <div class="text">Номер вашего бронирования <p class="number_order">{{ code.code }}</p></div>
        
     </div>
     <div class="text2">В течение 10 минут с вами свяжется <br> оператор для подтверждения заказа</div>

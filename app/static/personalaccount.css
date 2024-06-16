@@ -1,0 +1,33 @@
+.panelname{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    font-family: Montserrat;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.orderlist{
+    display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  font-family: Montserrat;
+  background-color: white;
+  border-radius: 9px;
+  font-size: 20px;
+}
+
+.conteineradmin{
+    width: 100%;
+  max-width: 1519px;
+  background-color: #D9D9D9;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin: 0 auto;
+  border-radius: 5px;
+}

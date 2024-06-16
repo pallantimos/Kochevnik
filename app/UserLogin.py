@@ -12,6 +12,7 @@ class UserLogin():
             "Password": self.__user.Password,
             "Surname": self.__user.Surname,
             "Phone": self.__user.Phone,
+            "fk_role": self.__user.fk_role,
         }
         return user
 

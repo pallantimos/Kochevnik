@@ -13,6 +13,7 @@ function bookRoom() {
     // Обработка ответа сервера
     xhr.onload = function() {
       if (xhr.status === 200) {
+          window.location.href= "/verbron"
         alert("В доработке")
       } else {
         // Произошла ошибка при отправке данных

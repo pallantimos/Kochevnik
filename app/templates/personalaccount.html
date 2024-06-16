@@ -1,0 +1,29 @@
+{% extends "baseadmin.html" %}
+
+{% block head  %}
+<title>Пользователи</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='personalaccount.css') }}">
+<script src="{{ url_for('static', filename='personalaccount.js') }}" defer></script>
+<link rel="shortcut icon" href="{{ url_for('static', filename='/images/favicon.ico') }}" />
+{% endblock %}
+
+{% block content %}
+
+<div class="conteineradmin">
+    <div class="panelname">
+        <p class="iduser">ID пользователя</p>
+        <p class="numberuser">Телефон</p>
+        <p class="emailuser">Email</p>
+        <p class="block">Действия</p>
+    </div>
+    {% for el in users %}
+    <div class="orderlist">
+        <p class="item1">{{ el.id }}</p>
+          <p class="item2">{{ el.Phone }}</p>
+          <p class="item3">{{ el.Email }}</p>
+          <button class="item4">Заблокировать</button>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

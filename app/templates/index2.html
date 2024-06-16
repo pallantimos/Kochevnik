@@ -4,6 +4,7 @@
 <title>"Кочевник" туристическая база</title>
 <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 <script src="{{ url_for('static', filename='indexjs.js') }}" defer></script>
+<link rel="shortcut icon" href="{{ url_for('static', filename='/images/favicon.ico') }}" />
 {% endblock %}
 
 {% block content %}
@@ -18,7 +19,7 @@
                 <div class="contents">
                     <div class="name">Шурпа</div>
                     <div class="des">Суп из баранины с овощами.</div>
-                    <button>Перейти в меню</button>
+                    <button formaction="/menu">Перейти в меню</button>
                 </div>
             </div>
             <div class="item" style="background-image: url(https://arigus.tv/upload/iblock/f62/b3j8f06clqi2z4z97jhsylw8a5vmsijq.jpg);">
@@ -65,39 +66,6 @@
     </div>
 </div>
 
+<a href="/adminprofile">Админка</a>
 
-
-
-
-<p class="hoteltext">Мы позаботились о вашем отдыхе и подготовили чистые, уютные номера</p>
-<div class="hotel">
-    <div class="slide-hotel">
-        <div class="item-hotel" style="background-image: url(https://static.sutochno.ru/doc/files/hotels/0/38/801/big/60a0d76a1bf92.jpg);">
-            <div class="contents-hotel">
-                <div class="name-hotel">Номер 1</div>
-                <div class="des-hotel">Уютный номер на первом этаже.</div>
-                <button>Увидеть больше</button>
-            </div>
-        </div>
-        <div class="item-hotel" style="background-image: url(https://s0.rbk.ru/v6_top_pics/media/img/2/00/756578923068002.jpg);">
-            <div class="contents-hotel">
-                <div class="name-hotel">Номер 2</div>
-                <div class="des-hotel">Уютный номер на первом этаже.</div>
-                <button>Увидеть больше</button>
-            </div>
-        </div>
-        <div class="item-hotel" style="background-image: url(https://welcome.mosreg.ru/cache/thumbs/thumb_1920__1921112917.jpg);">
-            <div class="contents-hotel">
-                <div class="name-hotel">Номер 3</div>
-                <div class="des-hotel">Большой номер на втором этаже.</div>
-                <button>Увидеть больше</button>
-            </div>
-        </div>
-<div class="button-hotel">
-    <button class="prev-hotel">&#8592;<i class="fa-solid-hotel fa-arrow-left-hotel"></i></button>
-    <button class="next-hotel">&#8594;<i class="fa-solid-hotel fa-arrow-right-hotel"></i></button>
-</div>
-
-</div>
-</div>
 {% endblock %}

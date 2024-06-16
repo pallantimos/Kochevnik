@@ -6,12 +6,10 @@ from sqlalchemy import insert, select, delete, text, update, join
 from app import app
 from app.UserLogin import UserLogin
 from app.user_creation import UserCreationSchema
-from db import Users, Session, Role, Order, OrderList, OrderStatus, BronStatus, Dish, Rooms, Bron
-from flask_recaptcha import ReCaptcha
+from db import Users, Session, Role, Order, OrderList, OrderStatus, BronStatus, Dish, Rooms, Bron, Status
 from pydantic import ValidationError
 import hashlib
 import config
-
 
 from flask import (
     Blueprint,
@@ -23,7 +21,6 @@ from flask import (
     url_for,
     jsonify,
 )
-from werkzeug.security import check_password_hash, generate_password_hash
 
 bp = Blueprint("auth", __name__, url_prefix="/auth")
 
@@ -37,16 +34,6 @@ login_manager.login_message_category = "success"
 def load_user(user_id):
     print("load_user")
     return UserLogin().from_DB(user_id)
-
-
-@app.route("/")
-@app.route("/index")
-def index():
-    if 'visits' in session:
-        session['visits'] = session['visits'] + 1
-    else:
-        session['visits'] = 1
-    return render_template("index2.html", visits=session['visits'])
 
 
 @app.route("/registratesubmit", methods=["POST", "GET"])
@@ -108,6 +95,42 @@ def registration():
     return render_template("registr.html")
 
 
+@app.route("/adminprofile")
+def admin_profile():
+    admin = current_user.get_current_user_info()
+    return render_template("adminprofile.html", admin=admin)
+
+
+@app.route("/adminorder")
+def admin_order():
+    with Session() as session:
+        orders = session.query(Order).all()
+        statuses = session.query(Status).all()
+    return render_template("adminorder.html", orders=orders, statuses=statuses)
+
+
+@app.route("/contact")
+def contact():
+    return render_template("contact.html")
+
+
+@app.route("/personalaccount")
+def personal_account():
+    with Session() as session:
+        users = session.query(Users).all()
+    return render_template("personalaccount.html", users=users)
+
+
+@app.route("/")
+@app.route("/index")
+def index():
+    if 'visits' in session:
+        session['visits'] = session['visits'] + 1
+    else:
+        session['visits'] = 1
+    return render_template("index2.html", visits=session['visits'])
+
+
 @app.route("/login", methods=["POST", "GET"])
 def login():
     if current_user.is_authenticated:
@@ -139,16 +162,19 @@ def login():
                 flash("Неправильный пароль", "danger")
                 return redirect(url_for("login"))
     print(get_flashed_messages())
-    return render_template("login.html", visits=session['visits'])
+    return render_template("login.html")
 
 
 @app.route("/order", methods=["POST", "GET"])
+@login_required
 def order():
     if request.method == "GET":
         with Session() as session:
-            statement = select(Order).where(Order.fk_User == current_user.get_id())
+            statement = select(OrderStatus.fk_Order).where(OrderStatus.fk_Status == 1)
+            order_status = session.execute(statement).scalars().all()
+            statement = select(Order).where(Order.fk_User == current_user.get_id(), Order.id.in_(order_status))
             order_result = session.execute(statement).fetchone()
-
+            total_price = 0
             if order_result:
                 statement = select(OrderList).where(OrderList.fk_Order == order_result[0].id).order_by(OrderList.id)
                 order_list_result = session.execute(statement).scalars().all()
@@ -163,14 +189,20 @@ def order():
 
                 for i in range(len(dishes_result)):
                     item = {'Name': dishes_result[i].Name, 'Price': dishes_result[i].Price, "Amount": order_list[i]}
+                    total_price += dishes_result[i].Price * order_list[i]
                     cart_items.append(item)
-            print(cart_items)
-        response = jsonify(cart_items)
-        response.headers['Content-Type'] = 'application/json'
-        return response
+                if len(dishes_result) != 0:
+                    response = make_response(jsonify(cart_items), 200)
+                    response.headers['Content-Type'] = 'application/json'
+                    return render_template("order.html", total_price=total_price)
+                else:
+                    return redirect("/basket", 200, Response=None)
+        return render_template("order.html", total_price=total_price)
     if request.method == "POST":
         with Session() as session:
-            statement = select(Order).where(Order.fk_User == current_user.get_id())
+            statement = select(OrderStatus.fk_Order).where(OrderStatus.fk_Status == 1)
+            order_status = session.execute(statement).scalars().all()
+            statement = select(Order).where(Order.fk_User == current_user.get_id(), Order.id.in_(order_status))
             order_result = session.execute(statement).fetchone()
 
             session.execute(
@@ -178,10 +210,29 @@ def order():
                 .where(OrderStatus.fk_Order == order_result[0].id)
                 .values(fk_Status=2)
             )
-            print("!!!!!!!!")
+
+            order = Order(
+                fk_User=current_user.get_id(),
+                Price=0,
+                Code=config.random_string(),
+            )
+            session.add(order)
             session.flush()
             session.commit()
-            return make_response(redirect(url_for("verbron")))
+
+            statement = select(Order).order_by(Order.id.desc())
+            result = session.execute(statement)
+            result = result.scalar()
+            status = OrderStatus(
+                fk_Order=result.id,
+                fk_Status=1,
+                Time=datetime.datetime.now().time(),
+                Date=datetime.datetime.now().date(),
+            )
+            session.add(status)
+            session.flush()
+            session.commit()
+            return make_response(redirect(url_for("verbron")), 200)
     return render_template("order.html")
 
 
@@ -250,7 +301,9 @@ def menu():
             result = session.execute(statement)
             result = result.scalar()
 
-            statement = select(Order).where(Order.fk_User == current_user.get_id())
+            statement = select(OrderStatus.fk_Order).where(OrderStatus.fk_Status == 1)
+            order_status = session.execute(statement).scalars().all()
+            statement = select(Order).where(Order.fk_User == current_user.get_id(), Order.id.in_(order_status))
             result2 = session.execute(statement)
             result2 = result2.fetchone()
 
@@ -289,15 +342,20 @@ def logout():
 @login_required
 def user():
     user = current_user.get_current_user_info()
+    print("!!!!!!!!!!!!!!!!!!!!" + str(user["fk_role"]))
+    if user["fk_role"] == 2:
+        return redirect(url_for("admin_profile"))
     return render_template("user.html", user=user)
 
 
 @app.route("/basket")
+@login_required
 def basket():
     return render_template("basket.html")
 
 
 @app.route("/shoppingcart", methods=["POST", "GET"])
+@login_required
 def shopping_cart_add():
     if request.method == "POST":
         with Session() as session:
@@ -306,7 +364,9 @@ def shopping_cart_add():
             selected_dish = selected_dish.fetchone()
             print(request.json["Name"])
 
-            statement = select(Order).where(Order.fk_User == current_user.get_id())
+            statement = select(OrderStatus.fk_Order).where(OrderStatus.fk_Status == 1)
+            order_status = session.execute(statement).scalars().all()
+            statement = select(Order).where(Order.fk_User == current_user.get_id(), Order.id.in_(order_status))
             result2 = session.execute(statement)
             result2 = result2.fetchone()
 
@@ -327,7 +387,9 @@ def shopping_cart_add():
 
     if request.method == "GET":
         with Session() as session:
-            statement = select(Order).where(Order.fk_User == current_user.get_id())
+            statement = select(OrderStatus.fk_Order).where(OrderStatus.fk_Status == 1)
+            order_status = session.execute(statement).scalars().all()
+            statement = select(Order).where(Order.fk_User == current_user.get_id(), Order.id.in_(order_status))
             order_result = session.execute(statement).fetchone()
 
             if order_result:
@@ -353,21 +415,15 @@ def shopping_cart_add():
     return render_template("basket.html")
 
 
-# @app.route("/ordersubmit", methods=["POST"])
-# def order_submit():
-#     with Session() as session:
-#         statement = select(Order).where(Order.fk_User == current_user.get_id())
-#         selected_order = session.execute(statement)
-#         statement = select(OrderList).where(OrderList.fk_Order == selected_order[0].id, OrderList.fk_Dish == request.json["Dish"])
-#         session.add(OrderList(
-#             fk_Order=order.id,
-#             Amount=request.json["amount"],
-#             fk_Dish=request.json["dish"],
-#         ))
-#         session.flush()
-#         session.commit()
-
-
 @app.route("/verorder", methods=["POST", "GET"])
+@login_required
 def veorder():
-    return render_template("verorder.html")
+    with Session() as sessionn:
+        statement = select(Order).where(
+            Order.fk_User == current_user.get_id(),
+        )
+        result = sessionn.execute(statement)
+        result = result.scalars()
+
+        code = {"code": result.all()[-1].Code}
+    return render_template("verorder.html", code=code)

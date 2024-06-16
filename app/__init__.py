@@ -9,3 +9,4 @@ app.config.from_object(Config)
 from app import routes
 
 app.register_blueprint(routes.bp)
+app.run(debug=True)

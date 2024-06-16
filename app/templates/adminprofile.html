@@ -1,0 +1,29 @@
+{% extends "baseadmin.html" %}
+
+{% block head  %}
+<title>Личный кабинет</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='adminprofile.css') }}">
+<script src="{{ url_for('static', filename='adminprofile.js') }}" defer></script>
+<link rel="shortcut icon" href="{{ url_for('static', filename='/images/favicon.ico') }}" />
+{% endblock %}
+
+{% block content %}
+<div class="mainconteiner">
+<div class="adminconteiner">
+    <div class="admintext">
+<p>Администратор</p>
+    </div>
+    <div class="adminuser">
+        <p class="adminname">{{ admin.Surname }}</p>
+        <p class="adminsurname">{{ admin.Name }}</p>
+
+    </div>
+</div>
+
+<div class="adminbuttons"> 
+    <a href="/adminorder"><button  class="adminbuttons1">Перейти к заказам</button></a>
+    <a href="/personalaccount"><button class="adminbuttons2">Перейти к пользователям</button></a>
+    <a href="/logout"><button class="adminbuttons3">Выход</button></a>
+</div>
+</div>
+{% endblock %}
