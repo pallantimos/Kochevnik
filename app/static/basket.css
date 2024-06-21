@@ -9,6 +9,9 @@
     src: url(fonts/Montserrat-Light.ttf);
 }
 
+a{
+  text-decoration: none;
+}
 
 h2{
     font-family: Montserrat;
@@ -43,6 +46,10 @@ left: 145px;
   gap: 10px;
   padding: 10px;
   border: 1px solid #ddd;
+}
+
+.cart__button:active{
+  background-color: gray;
 }
   
 .cart__item-image {
@@ -191,9 +198,13 @@ bottom: 10px;
   width: 100px;
   height: 50px;
   left: 780px;
-  bottom: 90px;
+  bottom: 55px;
 }
 
 body{
   height: 1000px;
+}
+
+html{
+ height: 900px;
 }

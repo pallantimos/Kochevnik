@@ -14,7 +14,6 @@ function bookRoom() {
     xhr.onload = function() {
       if (xhr.status === 200) {
           window.location.href= "/verbron"
-        alert("В доработке")
       } else {
         // Произошла ошибка при отправке данных
         alert('Произошла ошибка при бронировании. Пожалуйста, попробуйте еще раз.');

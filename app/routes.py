@@ -6,7 +6,7 @@ from sqlalchemy import insert, select, delete, text, update, join
 from app import app
 from app.UserLogin import UserLogin
 from app.user_creation import UserCreationSchema
-from db import Users, Session, Role, Order, OrderList, OrderStatus, BronStatus, Dish, Rooms, Bron, Status
+from db import Users, Session, Role, Order, OrderList, OrderStatus, BronStatus, Dish, Rooms, Bron, Status, BlackList
 from pydantic import ValidationError
 import hashlib
 import config
@@ -101,12 +101,32 @@ def admin_profile():
     return render_template("adminprofile.html", admin=admin)
 
 
-@app.route("/adminorder")
+@app.route("/adminorder", methods=["POST", "GET"])
 def admin_order():
     with Session() as session:
-        orders = session.query(Order).all()
-        statuses = session.query(Status).all()
-    return render_template("adminorder.html", orders=orders, statuses=statuses)
+        orders_answer = []
+        if request.method == "POST":
+            with Session() as session:
+                session.execute(
+                    update(OrderStatus)
+                    .where(OrderStatus.fk_Order == request.json['orderId'])
+                    .values(fk_Status=int(request.json['statusId']) + 1)
+                )
+                session.flush()
+                session.commit()
+            return make_response(jsonify({"success": "true"}), 200)
+
+        if request.method == "GET":
+            orders = session.query(Order).order_by(Order.id.desc())
+            orders_statuses = session.execute(select(Status.Name).join(OrderStatus).where(Status.id == OrderStatus.fk_Status).order_by(OrderStatus.fk_Order.desc()))
+            orders_statuses = orders_statuses.fetchall()
+            orders_statuses = [str(el)[2:-3] for el in orders_statuses]
+            for i in range(len(orders_statuses)):
+                item = {'id': orders[i].id, 'Price': orders[i].Price, "Code": orders[i].Code, "fk_User": orders[i].fk_User, "status": orders_statuses[i]}
+                orders_answer.append(item)
+                print(orders_answer)
+                print(len(orders_statuses))
+            return render_template("adminorder.html", orders=orders_answer)
 
 
 @app.route("/contact")
@@ -114,11 +134,26 @@ def contact():
     return render_template("contact.html")
 
 
-@app.route("/personalaccount")
+@app.route("/personalaccount", methods=["POST", "GET"])
 def personal_account():
     with Session() as session:
-        users = session.query(Users).all()
-    return render_template("personalaccount.html", users=users)
+        blacklist = session.execute(select(BlackList.fk_User)).scalars().all()
+        users = session.execute(select(Users).where(Users.id.notin_(blacklist))).scalars()
+        users_json = []
+        for u in users:
+            item = {"id": u.id, "Phone": u.Phone, "Email": u.Email}
+            users_json.append(item)
+        if request.method == "POST":
+            BlackList(
+                fk_User=request.json["userId"]
+            )
+            session.add(BlackList(
+                fk_User=request.json["userId"]
+            ))
+            session.flush()
+            session.commit()
+            return make_response(jsonify({"success": "true"}), 200)
+    return render_template("personalaccount.html", users=users_json)
 
 
 @app.route("/")
@@ -140,8 +175,9 @@ def login():
         phone = request.json["tel"]
         password = request.json["password"]
         with Session() as sessionn:
+            blacklist = sessionn.execute(select(BlackList.fk_User)).scalars().all()
             statement = select(Users).where(
-                Users.Phone == phone,
+                Users.Phone == phone, Users.id.notin_(blacklist)
             )
             result = sessionn.execute(statement)
             result = result.fetchone()
@@ -153,14 +189,14 @@ def login():
                 print("Login Successful")
                 user_login = UserLogin().create(result[0])
                 login_user(user_login)
-                response = make_response(redirect(url_for("user")))
+                response = make_response(jsonify({"success": "true"}), 200)
                 return response
             elif not result:
                 flash("Пользователь не найден", "danger")
-                return redirect(url_for("login"))
+                return make_response(jsonify({"success": "false"}), 304)
             elif str(hashed_password) != result[0].Password:
                 flash("Неправильный пароль", "danger")
-                return redirect(url_for("login"))
+                return make_response(jsonify({"success": "false"}), 304)
     print(get_flashed_messages())
     return render_template("login.html")
 
@@ -209,6 +245,12 @@ def order():
                 update(OrderStatus)
                 .where(OrderStatus.fk_Order == order_result[0].id)
                 .values(fk_Status=2)
+            )
+
+            session.execute(
+                update(Order)
+                .where(Order.fk_User == current_user.get_id(), Order.id.in_(order_status))
+                .values(Price=str(request.json["price"])[0:-2])
             )
 
             order = Order(
@@ -297,7 +339,7 @@ def verbron():
 def menu():
     if request.method == "POST":
         with (Session() as session):
-            statement = select(Dish).where(Dish.Name == request.json[0]['name'])
+            statement = select(Dish).where(Dish.Name == request.json['name'])
             result = session.execute(statement)
             result = result.scalar()
 
@@ -311,6 +353,7 @@ def menu():
             result3 = session.execute(statement)
             result3 = result3.fetchone()
             if not result3:
+                print("!!!!!!!!!!!!!!")
                 order_list = OrderList(
                     fk_Dish=result.id,
                     Amount=1,
@@ -338,14 +381,36 @@ def logout():
     return redirect(url_for("login"))
 
 
-@app.route("/user")
+@app.route("/user", methods=["POST", "GET"])
 @login_required
 def user():
-    user = current_user.get_current_user_info()
-    print("!!!!!!!!!!!!!!!!!!!!" + str(user["fk_role"]))
-    if user["fk_role"] == 2:
-        return redirect(url_for("admin_profile"))
-    return render_template("user.html", user=user)
+    if request.method == "POST":
+        with Session() as session:
+            session.execute(
+                update(Users)
+                .where(Users.id == current_user.get_id())
+                .values(Name=request.json['name'], Email=request.json['email'], Surname=request.json['surname'], Phone=request.json['phone'])
+            )
+            session.flush()
+            session.commit()
+        return make_response(jsonify({"success": True}), 200)
+    if request.method == "GET":
+        user = current_user.get_current_user_info()
+        with Session() as session:
+            orders = session.execute(
+                select(Order.Code, Order.Price, OrderStatus.Date, Status.Name)
+                .select_from(Order).where(Order.fk_User == current_user.get_id(), Order.Price != 0)
+                .join(OrderStatus, Order.id == OrderStatus.fk_Order)
+                .join(Status, OrderStatus.fk_Status == Status.id)
+                .where(OrderStatus.fk_Order == Order.id)
+            )
+            orders = orders.fetchall()
+            orders_json = []
+            for order in orders:
+                orders_json.append({"code": order.Code, "price": order.Price, "date": order.Date, "status": order.Name})
+        if user["fk_role"] == 2:
+            return redirect(url_for("admin_profile"))
+    return render_template("user.html", user=user, orders=orders_json)
 
 
 @app.route("/basket")
@@ -405,7 +470,7 @@ def shopping_cart_add():
                 cart_items = []
 
                 for i in range(len(dishes_result)):
-                    item = {'Name': dishes_result[i].Name, 'Price': dishes_result[i].Price, "Amount": order_list[i], "delete": "false"}
+                    item = {'Name': dishes_result[i].Name, 'Price': dishes_result[i].Price, "Amount": order_list[i], "delete": "false", "Image": dishes_result[i].Image}
                     cart_items.append(item)
             print(cart_items)
         response = jsonify(cart_items)

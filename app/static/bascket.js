@@ -22,7 +22,8 @@ function renderCartItems() {
 
     const image = document.createElement('img');
     image.classList.add('cart__item-image');
-    image.src = item.image;
+    image.src = item.Image;
+    console.log(item.Image);
     image.alt = item.Name;
     cartItem.appendChild(image);
 

@@ -1,9 +1,10 @@
 function submitOrder(){
   console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+  const price = document.querySelector(".order__summary-price")
   const xhr = new XMLHttpRequest();
   xhr.open('POST', '/order', true);
     xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.send(JSON.stringify({ "sumbit": "true" }));
+    xhr.send(JSON.stringify({ "sumbit": "true", "price": price.textContent}));
 
     // Обработка ответа сервера
     xhr.onload = function() {

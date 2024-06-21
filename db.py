@@ -45,6 +45,7 @@ class Dish(Base):
     Name: Mapped[str] = mapped_column(String(255))
     Description: Mapped[str] = mapped_column(String(255))
     Price: Mapped[int] = mapped_column(Integer)
+    Image: Mapped[str] = mapped_column(String(255), nullable=True)
     fk_Dish_Category: Mapped[int] = mapped_column(ForeignKey("Dish_Category.id"))
 
 

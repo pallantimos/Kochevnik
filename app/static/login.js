@@ -16,16 +16,13 @@ document.getElementById('login-form').addEventListener('submit', function(event)
 
   xhr.onload = function() {
     if (xhr.status >= 200 && xhr.status < 300) {
-      console.log('Данные успешно отправлены на сервер!');
-      window.location.href= "/user"
       let response = JSON.parse(xhr.responseText);
       // Check if the response indicates success
       if (response.success) {
-      // Redirect the user to the index page
+        window.location.href= "/user"
     }}
     else {
-      let response = JSON.parse(xhr.responseText);
-      console.error(response.error);
+      window.location.href = "/login"
     }
   };
   xhr.send(jsonData); // отправляем JSON данные на сервер

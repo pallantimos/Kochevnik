@@ -10,6 +10,8 @@
 
   h2{
     font-family: Montserrat;
+    position: relative;
+    left: 150px;
   }
 
   p{
@@ -33,6 +35,10 @@
 
   }
 
+
+  .order__button:active{
+    background-color: gray;
+  }
   .order__summary-price{
 
   }

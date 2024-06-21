@@ -65,6 +65,11 @@ button{
     cursor: pointer;
 }
 
+button:active{
+      background-color: gray;
+  }
+
+
 form a{
     text-decoration: none;
     color: rgba(255, 255, 255, 1);

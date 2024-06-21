@@ -11,7 +11,7 @@
 <h2>Личный кабинет</h2>
 <div class="buttons">
     <ul class="button-list">
-      <li class="libutton"><button class="edit" onclick="editProfile()">Изменить</button></li>
+      <li class="libutton"><button class="edit" id="open-modal-btn">Изменить</button></li>
       <li class="libutton"><button class="exit" onclick="logout()">Выйти</button></li>
     </ul>
   </div>
@@ -29,54 +29,45 @@
             <li class="li4">Сумма заказа</li>
         </ul>
     </div>
-<!--    <div class="carthistory">-->
-<!--        <div class="orderinfo">-->
-<!--            <p class="o1">#&lt;!&ndash; order.id&ndash;&gt;</p>-->
-<!--            <p class="o2">&lt;!&ndash;order.id&ndash;&gt;</p>-->
-<!--            <p class="o3">&lt;!&ndash; order.id&ndash;&gt;</p>-->
-<!--            <p class="o4">&lt;!&ndash;order.id &ndash;&gt; ₽</p>-->
-<!--        </div>-->
-<!--    </div>-->
+    {% for el in orders %}
+    <div class="orderlist">
+        <p class="item1">{{ el.code }}</p>
+        <p class="item5">{{ el.status }}</p>
+          <p class="item2">{{ el.date }}</p>
+          <p class="item3">{{ el.price }}</p>
+    </div>
+     {% endfor %}
 </div>
+
+<br>
+<br>
+<br>
 
 
 <!-- Модальное окно для изменения личных данных -->
-<div class="modal fade" id="edit-profile-modal" tabindex="-1" role="dialog" aria-labelledby="editProfileModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="editProfileModalLabel">Изменение личных данных</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+<div class="modal" id="my-modal">
+  <div class="modal__box">
+      <button class="modal__close-btn" id="close-my-modal-btn">
+          <svg width="23" height="25" viewBox="0 0 23 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M2.09082 0.03125L22.9999 22.0294L20.909 24.2292L-8.73579e-05 2.23106L2.09082 0.03125Z"
+                  fill="#333333" />
+              <path d="M0 22.0295L20.9091 0.0314368L23 2.23125L2.09091 24.2294L0 22.0295Z" fill="#333333" />
+          </svg>
+      </button>
+      <h2 class="title-modal">Изменение данных</h2>
+      <form class="edit-window">
+        <div>
+          <p class="t1">Фамилия <input class="i1" type="text" value="{{ user.Surname }}"></p>
         </div>
-        <div class="modal-body">
-          <!-- Форма для изменения личных данных -->
-          <form id="edit-profile-form">
-            <div class="form-group">
-              <label for="surname">Фамилия</label>
-              <input type="text" class="form-control" id="surname" name="surname" value="{{ user.Surname }}">
-            </div>
-            <div class="form-group">
-              <label for="name">Имя</label>
-              <input type="text" class="form-control" id="name" name="name" value="{{ user.Name }}">
-            </div>
-            <div class="form-group">
-              <label for="phone">Телефон</label>
-              <input type="text" class="form-control" id="phone" name="phone" value="{{ user.Phone }}">
-            </div>
-            <div class="form-group">
-              <label for="email">Email</label>
-              <input type="email" class="form-control" id="email" name="email" value="{{ user.Email }}">
-            </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
-          <button type="button" class="btn btn-primary" onclick="saveProfile()">Сохранить</button>
-        </div>
-      </div>
-    </div>
+        <div><p class="t2">Имя <input class="i2" type="text" value="{{ user.Name }}"></p></div>
+        <div><p class="t3">Телефон <input  class="i3" type="tel" value="{{ user.Phone }}"></p></div>
+        <div><p class="t4">Email <input class="i4" type="email" value="{{ user.Email }}"></p></div>
+      </form>
+
+
+     
+     <button class="btn-save" id="saveButton">Сохранить</button>
   </div>
+</div>
 
 {% endblock %}

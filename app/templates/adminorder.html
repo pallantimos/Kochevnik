@@ -20,20 +20,42 @@
      {% for el in orders %}
     <div class="orderlist">
         <p class="item1">{{ el.id }}</p>
-        <select class="statuslist">
-        {% for status in statuses %}
-            {% if status == selected_status %}
-            <option selected>{{ status.Name }}</option>
-            {% else %}
-            <option >{{ status.Name }}</option>
-            {% endif %}
-        {% endfor %}
-        </select>
+        <p class="item5">{{ el.status }}</p>
+        <button class="item6" id="open-modal-btn"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3 21h3.75l11.15-11.15-3.75-3.75L3 17.25V21zM20.71 7.04a1 1 0 000-1.42l-2.34-2.34a1 1 0 00-1.42 0l-1.83 1.83 3.75 3.75 1.83-1.83z" fill="black"/>
+          </svg></button>
           <p class="item2">{{ el.fk_User }}</p>
           <p class="item3">{{ el.Price }}</p>
           <p class="item4">{{ el.Code }}</p>
     </div>
      {% endfor %}
+</div>
+
+<br>
+<br>
+<br>
+
+<div class="modal" id="my-modal">
+    <div class="modal__box">
+        <button class="modal__close-btn" id="close-my-modal-btn">
+            <svg width="23" height="25" viewBox="0 0 23 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M2.09082 0.03125L22.9999 22.0294L20.909 24.2292L-8.73579e-05 2.23106L2.09082 0.03125Z"
+                    fill="#333333" />
+                <path d="M0 22.0295L20.9091 0.0314368L23 2.23125L2.09091 24.2294L0 22.0295Z" fill="#333333" />
+            </svg>
+        </button>
+        <h2>Изменение статуса заказа</h2>
+
+       <select class="status-list">
+        <option value="1">Не подтверждён</option>
+            <option value="2">Подтверждён</option>
+            <option value="3">Готовится</option>
+            <option value="4">Готов к выдаче</option>
+            <option value="5">Завершён</option>
+            <option value="6">Отменён</option>
+       </select>
+       <button class="btn-save">Сохранить</button>
+    </div>
 </div>
 
 {% endblock %}

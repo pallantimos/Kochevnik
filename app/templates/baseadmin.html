@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='styleadmin.css') }}">
         {% block head %}<link rel="shortcut icon" href="{{ url_for('static', filename='/images/favicon.ico') }}" />{% endblock %}
     </head>
     <body>
@@ -14,7 +14,7 @@
                     <ul>
                         <li class="kochevnik"><a href="/index"><img src="{{ url_for('static', filename='/images/Kochevnik.svg') }}" alt="Kochevnik"></a></li>
                         <li class="nomers"><a href="/adminorder">Заказы</a></li>
-                        <li class="menutext"><a href="/personalprofile">Пользователи</a></li>
+                        <li class="menutext"><a href="/personalaccount">Пользователи</a></li>
                         <li class="akk"><a href="/login"><img src="{{ url_for('static', filename='/images/account_member_profile_people_avatar_personal_user_icon_219331 1.svg') }}" alt="Аккаунт"></a></li>
                     </ul>
                 </nav>
@@ -28,7 +28,7 @@
     <ul class="ulfooter1">
         <li><a href="/adminprofile">Личный кабинет</a></li>
         <li><a href="/adminorder">Заказы</a></li>
-        <li><a href="/personalprofile">Пользователи</a></li>
+        <li><a href="/personalaccount">Пользователи</a></li>
 
     </ul>
 

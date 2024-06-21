@@ -33,7 +33,7 @@
 
 .adminsurname{
     position: relative;
-    right: 550px;
+    right: 1150px;
 }
 
 .adminotv{
@@ -58,6 +58,12 @@
 
 }
 
+
+.adminbuttons1:active{
+      background-color: gray;
+  }
+
+
 .adminbuttons2{
     display: block;
     padding: 10px;
@@ -75,6 +81,10 @@
 
 }
 
+.adminbuttons2:active{
+      background-color: gray;
+  }
+
 .adminbuttons3{
     display: block;
     padding: 10px;
@@ -91,6 +101,10 @@
     right: 1135px;
 
 }
+
+.adminbuttons3:active{
+      background-color: gray;
+  }
 
 .adminbuttons{
     display: flex;

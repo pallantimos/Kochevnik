@@ -58,15 +58,14 @@ nav a{
 
 .nomers{
     position: relative;
-    left: 400px;
-    top: 6px;
+    left: 490px;
+    
 }
 
 
 .menutext{
     position: relative;
-    left: 80vh;
-    top: 6px;
+    left: 800px;
 }
 
 .kontakts{
@@ -77,7 +76,7 @@ nav a{
 
 .kochevnik{
     position: relative;
-    left: 143px;
+    left: 148px;
     top: 5px;
 }
 
@@ -118,8 +117,7 @@ nav a{
 
 .akk{
     position: relative;
-    left: 93vh;
-    top: 1vh;
+    left: 1200px;
 }
 
 .tegintop{
@@ -561,14 +559,14 @@ footer {
 
 body {
     overflow-y: scroll;
-    height: 1600px;
+    height: 1000px;
     margin: 0;
     scroll-behavior: smooth;
     
 }
 
 html {
-    height: 1500px;
+    height: 100%;
     margin: 0;
 }
 

@@ -12,11 +12,9 @@ addItemToCart(image, name, price, 1);
 function addItemToCart(image, name, price, quantity) {
   const item = { image, name, price, quantity };
   cartItems.push(item);
-  saveCartItems();
-}
-
-function saveCartItems() {
-  let cartItemsJson = JSON.stringify(cartItems);
+  console.log(item)
+  console.log(cartItems)
+  let cartItemsJson = JSON.stringify(item);
   let xhr = new XMLHttpRequest();
   xhr.open('POST', '/menu', true);
   xhr.setRequestHeader('Content-Type', 'application/json');

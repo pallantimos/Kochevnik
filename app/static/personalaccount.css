@@ -14,7 +14,7 @@
   justify-content: space-between;
   align-items: center;
   gap: 10px;
-  padding: 10px;
+  padding: 27px;
   border: 1px solid #ddd;
   font-family: Montserrat;
   background-color: white;
@@ -30,4 +30,48 @@
   padding: 20px;
   margin: 0 auto;
   border-radius: 5px;
+}
+
+.item2{
+    position: absolute;
+    left: 690px;
+}
+
+.item1{
+    position: absolute;
+    left: 210px;
+}
+
+.item3{
+    position: absolute;
+    left: 1130px;
+}
+
+.item4{
+    position: absolute;
+    left: 1500px;
+
+    font-size: 15px;
+
+    background-color: darkred;
+    font-family: Montserrat;
+    color: #fff;
+    border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 160px;
+  height: 30px;
+}
+
+.block{
+    position: relative;
+    right: 50px;
+}
+
+.item4:hover{
+    opacity: 0.7;
+}
+
+.item4:active{
+    background-color: #2B2929;
 }

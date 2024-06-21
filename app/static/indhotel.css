@@ -26,6 +26,10 @@ button{
   font-family: Montserrat;
 }
 
+button:active{
+    background-color: gray;
+}
+
 *{
   font-family: Montserrat;
 }
@@ -44,7 +48,7 @@ button{
 .headerhotel{
   font-size: 26px;
   position: relative;
-  left: 1230px;
+  left: 1020px;
   bottom: 425px;
   
 }

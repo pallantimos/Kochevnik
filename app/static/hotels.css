@@ -9,6 +9,10 @@
     src: url(fonts/Montserrat-Light.ttf);
 }
 
+.hotelmain{
+    height: 600px;
+}
+
 
 .tegintop{
     position: relative;
@@ -68,7 +72,8 @@ section p{
 }
 
 body{
-    height: 500px;
+    position: relative;
+    height: 700px;
 }
 
 .namehotel{
@@ -86,6 +91,10 @@ body{
 
 .namehoteltext{
     position: relative;
-    bottom: 4px;
+    bottom: 13px;
+    font-size: 15px;
 }
 
+html{
+    height: 700px;
+}
